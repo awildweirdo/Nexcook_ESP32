@@ -8,6 +8,7 @@ Grind grind;
 Chop chop;
 Heat heat;
 OilDispenser oildis;
+WaterDispenser waterdis;
 BoilingWater boilw;
 Steamer steam;
 Stirrer stirrer;
@@ -20,12 +21,22 @@ LiquidCrystal lcd(19, 23, 18, 17, 16, 15);
 //pin declarations for error inputs
 int SPICE_ID1=13;
 
+void  error_spice(){
+    spicedis.errorID=1;
+    spicedis.error= true;
+    spicedis.errorhan();
+    return;
+  
+}
 
 void setup()
 {
     lcd.begin(16, 2);
     Serial.begin(9600);
     pinMode(SPICE_ID1, INPUT);
+    
+    //Attach interrupts for error handling
+    attachInterrupt(SPICE_ID1,error_spice,HIGH);
 }
 
 void loop()
@@ -75,17 +86,26 @@ void parseAndExecute(String command)
         int equalPos = moduleCommand.indexOf('=');
         String module = moduleCommand.substring(0, equalPos);
         int value = moduleCommand.substring(equalPos + 1).toInt();
+        if(errorchk()){
+          lcd.clear();
+        return;
+        }
         if (module == "water")
         {
-            dispenseOilWater(1, value);
+            waterdis.vol=value;
+            waterdis.start();
         }
         else if (module == "spice")
         {
-            dispenseSpice(1, value);
+            spicedis.id=1;
+            spicedis.weight=value;
+            spicedis.start();
         }
         else if (module == "ingredients")
         {
-            dispenseSpice(2, value); // For simplicity, treating ingredients as spice ID 2
+            hopper.id=2;
+            hopper.weight=value;
+            hopper.start();
         }
         else
         {
@@ -97,32 +117,3 @@ void parseAndExecute(String command)
     lcd.clear();
 }
 
-bool errorchk(){
-  if(digitalRead(13)){
-    spicedis.errorID=1;
-    spicedis.error= true;
-    spicedis.errorhan();
-    return true;
-  }
-  return false;
-}
-
-void dispenseSpice(int ID, int weight)
-{
-    lcd.clear();
-    lcd.print("spice- ID: " + String(ID));
-    lcd.setCursor(0, 1);
-    lcd.print("Weight: " + String(weight));
-    delay(10000);
-    lcd.clear();
-}
-
-void dispenseOilWater(int ID, int weight)
-{
-    lcd.clear();
-    lcd.print("Oil/water-ID: " + String(ID));
-    lcd.setCursor(0, 1);
-    lcd.print("Weight: " + String(weight));
-    delay(10000);
-    lcd.clear();
-}

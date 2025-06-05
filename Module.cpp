@@ -6,6 +6,7 @@ void SpiceDispenser::start()
   lcd.print("Spice Cat id-" + String(id));
   lcd.setCursor(0, 1);
   lcd.print("Weight- " + String(weight));
+  delay(5000);
 }
 void SpiceDispenser::stop()
 {
@@ -18,8 +19,9 @@ bool SpiceDispenser::isBusy()
 }
 void SpiceDispenser::errorhan()
 {
-  Serial.print("Error in Spice Dispenser with ID: ");
-  Serial.println(id);
+  Serial.println("Error in Spice Dispenser with ID: "+String(errorID));
+  
+  delay(5000);
 }
 
 void Hopper::start()
@@ -28,6 +30,7 @@ void Hopper::start()
   lcd.print("Hopper Cat id-" + String(id));
   lcd.setCursor(0, 1);
   lcd.print("Weight- " + String(weight));
+  delay(5000);
 }
 
 void Hopper::stop()
@@ -45,6 +48,7 @@ void Grind::start()
 {
   lcd.setCursor(0, 0);
   lcd.print("Grinding...");
+  delay(5000);
 }
 
 void Grind::stop()
@@ -62,6 +66,7 @@ void Chop::start()
 {
   lcd.setCursor(0, 0);
   lcd.print("Chopping...");
+  delay(5000);
 }
 
 void Chop::stop()
@@ -79,6 +84,7 @@ void Heat::start()
 {
   lcd.setCursor(0, 0);
   lcd.print("Heating to " + String(temp) + "C");
+  delay(5000);
 }
 
 void Heat::stop()
@@ -96,6 +102,7 @@ void Steamer::start()
 {
   lcd.setCursor(0, 0);
   lcd.print("Steaming...");
+  delay(5000);
 }
 
 void Steamer::stop()
@@ -113,6 +120,7 @@ void Stirrer::start()
 {
   lcd.setCursor(0, 0);
   lcd.print("Stirring...");
+  delay(5000);
 }
 
 void Stirrer::stop()
@@ -132,6 +140,7 @@ void OilDispenser::start()
   lcd.print("Dispensing oil");
   lcd.setCursor(0, 1);
   lcd.print("Volume: " + String(vol) + "ml");
+  delay(5000);
 }
 
 void OilDispenser::stop()
@@ -144,10 +153,32 @@ bool OilDispenser::isBusy()
 {
   return busy;
 }
+
+void WaterDispenser::start()
+{
+  lcd.setCursor(0, 0);
+  lcd.print("Dispensing water");
+  lcd.setCursor(0, 1);
+  lcd.print("Volume: " + String(vol) + "ml");
+  delay(5000);
+}
+
+void WaterDispenser::stop()
+{
+  lcd.clear();
+  lcd.setCursor(0, 0);
+}
+
+bool WaterDispenser::isBusy()
+{
+  return busy;
+}
+
 void BoilingWater::start()
 {
   lcd.setCursor(0, 0);
   lcd.print("Boiling water...");
+  delay(5000);
 }
 void BoilingWater::stop()
 {
@@ -163,6 +194,7 @@ void Cleaning::start()
 {
   lcd.setCursor(0, 0);
   lcd.print("Cleaning...");
+  delay(5000);
 }
 
 void Cleaning::stop()

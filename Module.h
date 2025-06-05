@@ -84,6 +84,17 @@ public:
   bool error;
 };
 
+class WaterDispenser :public Module
+{
+public:
+  void start() override;
+  void stop() override;
+  bool isBusy() override;
+  int vol;
+  bool busy;
+  bool error;
+};
+
 class BoilingWater : public Module
 {
 public:
