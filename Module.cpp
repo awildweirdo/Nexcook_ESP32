@@ -13,10 +13,10 @@ void SpiceDispenser::stop()
   lcd.clear();
   lcd.setCursor(0, 0);
 }
-bool SpiceDispenser::isBusy()
+/*bool SpiceDispenser::isBusy()
 {
   return busy;
-}
+}*/
 void SpiceDispenser::errorhan()
 {
   Serial.println("Error in Spice Dispenser with ID: "+String(errorID));
@@ -39,10 +39,10 @@ void Hopper::stop()
   lcd.setCursor(0, 0);
 }
 
-bool Hopper::isBusy()
+/*bool Hopper::isBusy()
 {
   return busy;
-}
+}*/
 
 void Grind::start()
 {
@@ -57,10 +57,10 @@ void Grind::stop()
   lcd.setCursor(0, 0);
 }
 
-bool Grind::isBusy()
+/*bool Grind::isBusy()
 {
   return busy;
-}
+}*/
 
 void Chop::start()
 {
@@ -74,11 +74,11 @@ void Chop::stop()
   lcd.clear();
   lcd.setCursor(0, 0);
 }
-
+/*
 bool Chop::isBusy()
 {
   return busy;
-}
+}*/
 
 void Heat::start()
 {
@@ -93,10 +93,10 @@ void Heat::stop()
   lcd.setCursor(0, 0);
 }
 
-bool Heat::isBusy()
+/*bool Heat::isBusy()
 {
   return busy;
-}
+}*/
 
 void Steamer::start()
 {
@@ -110,11 +110,11 @@ void Steamer::stop()
   lcd.clear();
   lcd.setCursor(0, 0);
 }
-
+/*
 bool Steamer::isBusy()
 {
   return busy;
-}
+}*/
 
 void Stirrer::start()
 {
@@ -128,11 +128,11 @@ void Stirrer::stop()
   lcd.clear();
   lcd.setCursor(0, 0);
 }
-
+/*
 bool Stirrer::isBusy()
 {
   return busy;
-}
+}*/
 
 void OilDispenser::start()
 {
@@ -148,11 +148,11 @@ void OilDispenser::stop()
   lcd.clear();
   lcd.setCursor(0, 0);
 }
-
+/*
 bool OilDispenser::isBusy()
 {
   return busy;
-}
+}*/
 
 void WaterDispenser::start()
 {
@@ -168,11 +168,11 @@ void WaterDispenser::stop()
   lcd.clear();
   lcd.setCursor(0, 0);
 }
-
+/*
 bool WaterDispenser::isBusy()
 {
   return busy;
-}
+}*/
 
 void BoilingWater::start()
 {
@@ -185,10 +185,11 @@ void BoilingWater::stop()
   lcd.clear();
   lcd.setCursor(0, 0);
 }
+/*
 bool BoilingWater::isBusy()
 {
   return busy;
-}
+}*/
 
 void Cleaning::start()
 {
@@ -202,8 +203,8 @@ void Cleaning::stop()
   lcd.clear();
   lcd.setCursor(0, 0);
 }
-
+/*
 bool Cleaning::isBusy()
 {
   return busy;
-}
+}*/
